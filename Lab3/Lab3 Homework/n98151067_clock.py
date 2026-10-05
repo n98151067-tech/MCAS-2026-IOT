@@ -1,6 +1,11 @@
-import tm1637
+import sys
 import datetime
 import time
+
+# Add TM1637 library path
+sys.path.append("../7segment_display/raspberrypi-tm1637")
+
+import tm1637
 
 # TM1637 pin setting (BCM)
 CLK = 17
