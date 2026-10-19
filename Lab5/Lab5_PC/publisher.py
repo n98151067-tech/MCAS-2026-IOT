@@ -18,7 +18,7 @@ def main():
     print(f"Publishing on tcp://0.0.0.0:{PORT}")
     print("Opening camera...")
 
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
     if not camera.isOpened():
         print("ERROR: Cannot open camera.")

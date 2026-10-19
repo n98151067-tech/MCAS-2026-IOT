@@ -43,6 +43,7 @@ def receive_frames(publisher_ip):
     try:
         while True:
             data = subscriber.recv()
+            print(f"[RECEIVED] Frame size: {len(data)} bytes")
 
             with frame_condition:
                 latest_frame = data
