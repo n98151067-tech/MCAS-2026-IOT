@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
@@ -7,109 +8,150 @@
 
     <meta
         name="viewport"
-        content="width=device-width,
-                 initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        Lab6 Gemini Chat
-    </title>
+    <title>Lab6 AI Chat</title>
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static',
-                filename='style.css') }}"
+        href="{{ url_for('static', filename='style.css') }}"
     >
 
 </head>
 
 <body>
 
-<header class="topbar">
+    <!-- =========================
+         Top Bar
+    ========================= -->
 
-    <div>
+    <header class="topbar">
 
-        <strong>
-            Lab6 Gemini Chat
-        </strong>
+        <div>
 
-        <span class="user">
-            登入：{{ username }}
-        </span>
+            <strong>
+                Lab6 AI Chat
+            </strong>
 
-    </div>
+            <span class="user">
+                登入：{{ username }}
+            </span>
 
-    <form
-        method="POST"
-        action="{{ url_for('logout') }}"
-    >
-
-        <button
-            class="secondary"
-            type="submit"
-        >
-            登出
-        </button>
-
-    </form>
-
-</header>
-
-
-<main class="chat-shell">
-
-    <section
-        id="messages"
-        class="messages"
-    >
-
-        <div class="message ai">
-            Gemini：你好，請輸入問題。
         </div>
 
-    </section>
-
-
-    <form
-        id="chat-form"
-        class="chat-form"
-    >
-
-        <input
-            id="message-input"
-            type="text"
-            placeholder="輸入訊息..."
-            maxlength="2000"
-            autocomplete="off"
-            required
+        <form
+            method="POST"
+            action="{{ url_for('logout') }}"
         >
+
+            <button
+                class="secondary"
+                type="submit"
+            >
+                登出
+            </button>
+
+        </form>
+
+    </header>
+
+
+    <!-- =========================
+         Chat Area
+    ========================= -->
+
+    <main class="chat-shell">
+
+        <!-- 聊天訊息顯示區 -->
+        <section
+            id="messages"
+            class="messages"
+            aria-live="polite"
+        >
+
+            <div class="message ai">
+                AI Chat：你好！請選擇 AI 模型並輸入問題。
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Chat Form
+        ========================= -->
+
+        <form
+            id="chat-form"
+            class="chat-form"
+        >
+
+            <!-- AI 模型選擇 -->
+            <label for="model-select">
+                選擇 AI 模型：
+            </label>
+
+            <select
+                id="model-select"
+                name="model"
+            >
+
+                <option value="gemini">
+                    Gemini
+                </option>
+
+                <option value="openrouter">
+                    OpenRouter
+                </option>
+
+            </select>
+
+
+            <!-- 訊息輸入框 -->
+            <input
+                id="message-input"
+                type="text"
+                placeholder="輸入訊息..."
+                maxlength="2000"
+                autocomplete="off"
+                required
+            >
+
+
+            <!-- 送出按鈕 -->
+            <button
+                id="send-button"
+                type="submit"
+            >
+                送出
+            </button>
+
+        </form>
+
+
+        <!-- =========================
+             Reset Conversation
+        ========================= -->
 
         <button
-            id="send-button"
-            type="submit"
+            id="reset-button"
+            class="secondary reset-button"
+            type="button"
         >
-            送出
+            開始新對話
         </button>
 
-    </form>
+    </main>
 
 
-    <button
-        id="reset-button"
-        class="secondary reset-button"
-        type="button"
-    >
-        開始新對話
-    </button>
+    <!-- =========================
+         JavaScript
+    ========================= -->
 
-</main>
-
-
-<script
-    src="{{ url_for('static',
-            filename='chat.js') }}"
->
-</script>
+    <script
+        src="{{ url_for('static', filename='chat.js') }}"
+    ></script>
 
 </body>
+
 </html>
